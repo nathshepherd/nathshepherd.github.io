@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const SectionContainer = styled.div`
-  min-height: calc(100vh - 12rem);
+  min-height: calc(100vh - 8rem);
 `;
 
 export const SectionContentGrid = styled.div`

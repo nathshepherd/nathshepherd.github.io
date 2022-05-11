@@ -8,6 +8,11 @@ const Container = styled.div`
   grid-template-rows: 1fr 5fr 1fr;
   max-height: 100vh;
   background: linear-gradient(180deg, #e3f0f3 0%, rgba(255, 255, 255, 1) 100%);
+
+  @media only screen and (max-width: 768px) {
+    grid-template-columns: 1fr;
+    padding: 1rem;
+  }
 `;
 
 export default Container;

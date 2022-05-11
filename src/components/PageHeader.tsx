@@ -16,7 +16,7 @@ const MenuContents = (buttonCallback?: () => void) => {
     <Button
       kind="secondary"
       onClick={() => {
-        navigate("/");
+        navigate("/portfolio/");
         if (buttonCallback) {
           buttonCallback();
         }
@@ -27,7 +27,7 @@ const MenuContents = (buttonCallback?: () => void) => {
     <Button
       kind="secondary"
       onClick={() => {
-        navigate("/experience");
+        navigate("/portfolio/experience");
         if (buttonCallback) {
           buttonCallback();
         }
@@ -38,7 +38,7 @@ const MenuContents = (buttonCallback?: () => void) => {
     <Button
       kind="secondary"
       onClick={() => {
-        navigate("/projects");
+        navigate("/portfolio/projects");
         if (buttonCallback) {
           buttonCallback();
         }

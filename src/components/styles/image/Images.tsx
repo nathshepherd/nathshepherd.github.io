@@ -4,12 +4,14 @@ export const ProfileImage = styled.img`
   border-radius: 5rem;
   max-height: 30rem;
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.4);
+  grid-column: 1;
   grid-row: 1/3;
-  justify-self: right;
+  justify-self: left;
 
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 1100px) {
     margin: 0;
     max-width: 20rem;
+    justify-self: center;
   }
 `;
 

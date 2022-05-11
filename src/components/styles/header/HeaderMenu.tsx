@@ -14,15 +14,15 @@ export const MobileHeaderMenu = styled.div<{ active: boolean }>`
   display: none;
   transition: 0.5s ease-in-out;
 
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 900px) {
     ${(props) =>
       props.active
         ? `
         display: flex;
         position: absolute;
         z-index: 100;
-        right: 4rem;
-        top: 4rem;
+        right: 1rem;
+        top: 5rem;
         flex-direction: column;
         background-color: rgba(255,255,255,0.75);
         padding: 1rem;

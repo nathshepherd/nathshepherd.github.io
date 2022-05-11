@@ -12,8 +12,8 @@ const AboutMe = () => {
         Hi, I'm Nathan!
       </Heading>
       <ProfileSection>
-        A computer science student at the University of Adelaide with a passion
-        for software and web development! 🕸️ 😎 💻
+        I'm a computer science student at the University of Adelaide with a
+        passion for software and web development! 🕸️ 😎 💻
         <br />
         (Promise I'm not part spider... unless? 👀 🕷 🕸️)
         <br />

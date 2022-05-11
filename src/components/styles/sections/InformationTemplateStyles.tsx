@@ -33,6 +33,10 @@ export const InformationTemplateStyle = styled.div`
   &:nth-child(4) {
     animation-delay: 0.4s;
   }
+
+  &:nth-child(5) {
+    animation-delay: 0.5s;
+  }
 `;
 
 export const InformationImage = styled.img`

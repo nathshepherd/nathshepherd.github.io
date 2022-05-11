@@ -5,10 +5,10 @@ import Socials from "./Socials";
 const PageFooterContents = () => {
   return (
     <PageFooterStyle>
+      <Socials />
       <FooterText>
         © {new Date().getFullYear()} Nathan Shepherd All Rights Reserved.
       </FooterText>
-      <Socials />
     </PageFooterStyle>
   );
 };

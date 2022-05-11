@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import styled from "styled-components";
 
 interface BurgerXButtonStyleProps {
@@ -50,7 +50,7 @@ export const BurgerXButton = (props: BurgerXButtonProps) => {
       },
       true
     );
-  }, []);
+  }, [props]);
 
   return (
     <div
