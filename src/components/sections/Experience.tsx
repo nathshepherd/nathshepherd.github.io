@@ -35,9 +35,9 @@ const ExperienceInfomation = [
     heading: "Canva",
     roles: ["Software Engineering Intern (Front-end)"],
     descriptions: [
-      `Used  React, Typescript, and Mobx to improve the download experience for Desktop App through new UI implementation 
-    and inter-process communications in Electron. `,
-      `Extended the existing WebX download service API to provide better visibility of downloads.`,
+      `Used  React, Typescript, and Mobx to improve the download experience for Desktop App through new UI implementations 
+    and inter-process communications via Electron. `,
+      `Extended the existing WebX download service API using Typescript and Protocol Buffers to provide better visibility of downloads.`,
     ],
     date: ["Nov 2022 - Feb 2023"],
     image: CanvaIcon,
