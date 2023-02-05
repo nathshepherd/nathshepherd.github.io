@@ -1,9 +1,9 @@
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { PageFooter } from "./components/PageFooter";
+import { PageHeader } from "./components/PageHeader";
+import AboutMe from "./components/sections/AboutMe";
 import Container from "./components/styles/core/Container";
 import Content from "./components/styles/core/Content";
-import PageHeaderContents from "./components/PageHeader";
-import PageFooterContents from "./components/PageFooter";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import AboutMe from "./components/sections/AboutMe";
 import Experience from "./components/sections/Experience";
 import Projects from "./components/sections/Projects";
 
@@ -12,13 +12,13 @@ const App = () => {
     <BrowserRouter>
       <Container>
         <Content>
-          <PageHeaderContents />
+          <PageHeader />
           <Routes>
-            <Route path="/portfolio/" element={<AboutMe />} />
-            <Route path="/portfolio/experience" element={<Experience />} />
-            <Route path="/portfolio/projects" element={<Projects />} />
+            <Route path="/" element={<AboutMe />} />
+            <Route path="/experience" element={<Experience />} />
+            <Route path="/projects" element={<Projects />} />
           </Routes>
-          <PageFooterContents />
+          <PageFooter />
         </Content>
       </Container>
     </BrowserRouter>

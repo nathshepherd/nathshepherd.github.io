@@ -1,41 +1,25 @@
 import styled from "styled-components";
 
-export const InformationTemplateStyle = styled.div`
+export const InformationTemplateStyle = styled.div<{ index: number }>`
   display: grid;
-  padding: 1.5rem;
-  height: min-content;
-  width: calc(100% - 3rem);
-  border-radius: 1rem;
-  column-gap: 1rem;
-  row-gap: 1rem;
   grid-template-columns: 1fr 8fr;
   justify-items: left;
+  column-gap: 1rem;
+  row-gap: 1rem;
+
+  height: min-content;
+  width: calc(100% - 3rem);
+  padding: 1.5rem;
+
+  animation: fade-in-left 0.5s forwards;
+  animation-delay: ${(props) => props.index * 0.1}s;
+
+  border-radius: 1rem;
   background-color: rgba(0, 0, 0, 0.05);
   opacity: 0;
-  animation: fade-in-left 0.5s forwards;
 
   @media only screen and (max-width: 768px) {
     grid-template-columns: 1fr;
-  }
-
-  &:nth-child(1) {
-    animation-delay: 0.1s;
-  }
-
-  &:nth-child(2) {
-    animation-delay: 0.2s;
-  }
-
-  &:nth-child(3) {
-    animation-delay: 0.3s;
-  }
-
-  &:nth-child(4) {
-    animation-delay: 0.4s;
-  }
-
-  &:nth-child(5) {
-    animation-delay: 0.5s;
   }
 `;
 

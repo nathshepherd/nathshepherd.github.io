@@ -1,72 +1,81 @@
-import PageHeaderStyle from "./styles/header/PageHeader";
 import {
-  HeaderMenu,
   BurgerMenu,
+  HeaderMenu,
   MobileHeaderMenu,
 } from "./styles/header/HeaderMenu";
-import { PageTitleHeader } from "./styles/text/heading";
-import Button from "./styles/button";
 import { BurgerXButton } from "./styles/button/BurgerX";
+import { PageTitleHeader } from "./styles/text/heading";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import Button from "./styles/button";
+import PageHeaderStyle from "./styles/header/PageHeader";
 
-const MenuContents = (buttonCallback?: () => void) => {
-  const navigate = useNavigate();
-  return [
-    <Button
-      kind="secondary"
-      onClick={() => {
-        navigate("/portfolio/");
-        if (buttonCallback) {
-          buttonCallback();
-        }
-      }}
-    >
-      About Me
-    </Button>,
-    <Button
-      kind="secondary"
-      onClick={() => {
-        navigate("/portfolio/experience");
-        if (buttonCallback) {
-          buttonCallback();
-        }
-      }}
-    >
-      Experience
-    </Button>,
-    <Button
-      kind="secondary"
-      onClick={() => {
-        navigate("/portfolio/projects");
-        if (buttonCallback) {
-          buttonCallback();
-        }
-      }}
-    >
-      Projects
-    </Button>,
-  ];
-};
-
-const PageHeaderContents = () => {
+export const PageHeader = () => {
   const [mobileMenuToggle, setMobileMenuToggle] = useState(false);
 
   return (
     <PageHeaderStyle>
       <PageTitleHeader>Nathan Shepherd</PageTitleHeader>
-      <BurgerMenu>
-        <BurgerXButton
-          active={mobileMenuToggle}
-          buttonTrigger={() => setMobileMenuToggle(!mobileMenuToggle)}
-        />
-      </BurgerMenu>
-      <MobileHeaderMenu active={mobileMenuToggle}>
-        {MenuContents(() => setMobileMenuToggle(!mobileMenuToggle))}
-      </MobileHeaderMenu>
-      <HeaderMenu>{MenuContents()}</HeaderMenu>
+      <DesktopMenu />
+      <MobileMenu
+        active={mobileMenuToggle}
+        onClose={() => setMobileMenuToggle(!mobileMenuToggle)}
+      />
     </PageHeaderStyle>
   );
 };
 
-export default PageHeaderContents;
+const DesktopMenu = () => (
+  <HeaderMenu>
+    <MenuContents />
+  </HeaderMenu>
+);
+
+const MobileMenu = (deps: { active: boolean; onClose: () => void }) => (
+  <>
+    <BurgerMenu>
+      <BurgerXButton active={deps.active} onClose={deps.onClose} />
+    </BurgerMenu>
+    <MobileHeaderMenu active={deps.active}>
+      <MenuContents onClose={deps.onClose} />
+    </MobileHeaderMenu>
+  </>
+);
+
+const MenuContents = ({ onClose }: { onClose?: () => void }) => {
+  const navigate = useNavigate();
+  const onCloseNavigate = (url: string) => {
+    navigate(url);
+    onClose?.();
+  };
+
+  const menuInformation = [
+    {
+      label: "About Me",
+      url: "/",
+    },
+    {
+      label: "Experience",
+      url: "/experience",
+    },
+    {
+      label: "Projects",
+      url: "/projects",
+    },
+  ];
+
+  return (
+    <>
+      {menuInformation.map((info) => (
+        <Button
+          key={info.label}
+          aria-labelledby={info.label}
+          kind="secondary"
+          onClick={() => onCloseNavigate(info.url)}
+        >
+          {info.label}
+        </Button>
+      ))}
+    </>
+  );
+};

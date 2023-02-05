@@ -32,6 +32,7 @@ export const GeneralIcon = styled.img<SvgIconProps>`
 `;
 
 export const SvgIcon = styled(GeneralIcon)`
+  cursor: pointer;
   &:hover {
     transform: translateY(-5%);
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.4);

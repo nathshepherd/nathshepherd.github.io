@@ -19,16 +19,17 @@ export const MobileHeaderMenu = styled.div<{ active: boolean }>`
       props.active
         ? `
         display: flex;
+        flex-direction: column;
+        justify-content: center;
+        row-gap: 0.5rem;
+        
         position: absolute;
-        z-index: 100;
         right: 1rem;
         top: 5rem;
-        flex-direction: column;
-        background-color: rgba(255,255,255,0.75);
+        
         padding: 1rem;
+        background-color: #c1dbde;
         border-radius: 1rem;
-        row-gap: 0.5rem;
-        justify-content: center;
         animation: fade-in 0.5s;`
         : "animation: fade-out 0.5s;"}
   }

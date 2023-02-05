@@ -1,33 +1,26 @@
 import {
-  InformationTemplateStyle,
-  InformationImage,
   InformationDescriptionList,
   InformationDescriptionListItem,
+  InformationImage,
+  InformationTemplateStyle,
 } from "./styles/sections/InformationTemplateStyles";
 import { Heading } from "./styles/text/heading";
-import SubHeading from "./styles/text/subheading";
 import Section from "./styles/text/section";
+import SubHeading from "./styles/text/subheading";
 
-interface InformationTemplateProps {
-  heading: string;
-  role: string;
+const InformationTemplate = (deps: {
+  date?: string[];
   descriptions: string[];
-  date?: string;
+  heading: string;
   image: string;
-}
-
-const InformationTemplate = ({
-  heading,
-  descriptions,
-  role,
-  date,
-  image,
-}: InformationTemplateProps) => {
+  index: number;
+  roles: string[];
+}) => {
   const renderedDescriptionItems = (
     <InformationDescriptionList>
-      {descriptions.map((description) => {
+      {deps.descriptions.map((description) => {
         return (
-          <InformationDescriptionListItem>
+          <InformationDescriptionListItem key={description}>
             {description}
           </InformationDescriptionListItem>
         );
@@ -36,12 +29,20 @@ const InformationTemplate = ({
   );
 
   return (
-    <InformationTemplateStyle>
-      <InformationImage src={image} />
+    <InformationTemplateStyle
+      aria-labelledby={deps.heading}
+      index={deps.index}
+      tabIndex={1}
+    >
+      <InformationImage src={deps.image} />
       <div>
-        <Heading>{heading}</Heading>
-        <Section>{role}</Section>
-        {date ? <SubHeading>{date}</SubHeading> : <></>}
+        <Heading>{deps.heading}</Heading>
+        {deps.roles.map((roleName, index) => (
+          <Section key={roleName}>
+            <div>{roleName}</div>
+            <SubHeading>{deps.date ? deps.date[index] : ""}</SubHeading>
+          </Section>
+        ))}
         <Section>{renderedDescriptionItems}</Section>
       </div>
     </InformationTemplateStyle>

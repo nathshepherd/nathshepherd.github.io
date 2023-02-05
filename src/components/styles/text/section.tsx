@@ -5,6 +5,8 @@ const Section = styled.div`
   color: #2a3132;
   transition: 0.25s ease-in-out;
 
+  padding: 0.25em 0em;
+
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;

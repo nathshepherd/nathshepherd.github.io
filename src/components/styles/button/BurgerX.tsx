@@ -32,36 +32,29 @@ export const BurgerXButtonStyle = styled.span<BurgerXButtonStyleProps>`
       : ""}
 `;
 
-interface BurgerXButtonProps {
+export const BurgerXButton = (deps: {
   active: boolean;
-  buttonTrigger: () => void;
-}
-
-export const BurgerXButton = (props: BurgerXButtonProps) => {
+  onClose: () => void;
+}) => {
   useEffect(() => {
     // If the menu is open and the window goes small and then,
     // big again, close the button state
     window.addEventListener(
       "resize",
       function () {
-        if (props.active && window.innerWidth >= 768) {
-          props.buttonTrigger();
+        if (deps.active && window.innerWidth >= 768) {
+          deps.onClose();
         }
       },
       true
     );
-  }, [props]);
+  }, [deps]);
 
   return (
-    <div
-      style={{ cursor: "pointer" }}
-      onClick={() => {
-        props.buttonTrigger();
-      }}
-    >
-      <BurgerXButtonStyle active={props.active} />
-      <BurgerXButtonStyle active={props.active} />
-      <BurgerXButtonStyle active={props.active} />
+    <div style={{ cursor: "pointer" }} onClick={deps.onClose}>
+      <BurgerXButtonStyle active={deps.active} />
+      <BurgerXButtonStyle active={deps.active} />
+      <BurgerXButtonStyle active={deps.active} />
     </div>
   );
 };
