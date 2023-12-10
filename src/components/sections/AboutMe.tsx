@@ -4,19 +4,17 @@ import { ProfileImage } from "../styles/image/Images";
 import { SectionContainer } from "../styles/sections/AboutMeStyle";
 import ProfilePicture from "./../../contents/profile_pic.jpg";
 
+const CANVA_URL = "https://www.canva.com/";
+
 const AboutMe = () => {
   return (
     <SectionContainer>
       <ProfileImage src={ProfilePicture} />
       <Heading style={{ paddingTop: "1rem", alignSelf: "flex-end" }}>
-        Hi, I'm Nathan!
+        Hi, I'm Nathan! 👋
       </Heading>
       <ProfileSection>
-        I'm a computer science student at the University of Adelaide with a
-        passion for software and web development! 🕸️ 😎 💻
-        <br />
-        (Promise I'm not part spider... unless? 👀 🕷 🕸️)
-        <br />
+        I'm a software engineer at <a href={CANVA_URL} rel="noreferrer" target="_blank">Canva</a> with a passion for front-end and software development!
         <br />
         Ever since I was little, it has been a lifelong goal to constantly
         challenge myself with new ideas and experiences from the world around

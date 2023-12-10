@@ -5,62 +5,62 @@ import {
 } from "./styles/header/HeaderMenu";
 import { BurgerXButton } from "./styles/button/BurgerX";
 import { PageTitleHeader } from "./styles/text/heading";
-import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import Button from "./styles/button";
 import PageHeaderStyle from "./styles/header/PageHeader";
+import { Pages } from "./install";
 
-export const PageHeader = () => {
+export const PageHeader = ({ navigateTo }: { navigateTo: (page: Pages) => void }) => {
   const [mobileMenuToggle, setMobileMenuToggle] = useState(false);
 
   return (
     <PageHeaderStyle>
       <PageTitleHeader>Nathan Shepherd</PageTitleHeader>
-      <DesktopMenu />
+      <DesktopMenu navigateTo={navigateTo} />
       <MobileMenu
         active={mobileMenuToggle}
+        navigateTo={navigateTo}
         onClose={() => setMobileMenuToggle(!mobileMenuToggle)}
       />
     </PageHeaderStyle>
   );
 };
 
-const DesktopMenu = () => (
+const DesktopMenu = ({ navigateTo }: { navigateTo: (page: Pages) => void }) => (
   <HeaderMenu>
-    <MenuContents />
+    <MenuContents navigateTo={navigateTo}/>
   </HeaderMenu>
 );
 
-const MobileMenu = (deps: { active: boolean; onClose: () => void }) => (
+const MobileMenu = (deps: { active: boolean; navigateTo: (page: Pages) => void, onClose: () => void }) => (
   <>
     <BurgerMenu>
       <BurgerXButton active={deps.active} onClose={deps.onClose} />
     </BurgerMenu>
     <MobileHeaderMenu active={deps.active}>
-      <MenuContents onClose={deps.onClose} />
+      <MenuContents navigateTo={deps.navigateTo} onClose={deps.onClose} />
     </MobileHeaderMenu>
   </>
 );
 
-const MenuContents = ({ onClose }: { onClose?: () => void }) => {
-  const navigate = useNavigate();
-  const onCloseNavigate = (url: string) => {
-    navigate(url);
+const MenuContents = ({ navigateTo, onClose }: { navigateTo: (page: Pages) => void, onClose?: () => void }) => {
+  const onCloseNavigate = (page: Pages) => {
+    navigateTo(page);
     onClose?.();
   };
 
   const menuInformation = [
     {
       label: "About Me",
-      url: "/",
+      page: Pages.ABOUT_ME,
     },
     {
       label: "Experience",
-      url: "/experience",
+      page: Pages.EXPERIENCE,
     },
     {
       label: "Projects",
-      url: "/projects",
+      page: Pages.PROJECTS,
     },
   ];
 
@@ -71,7 +71,7 @@ const MenuContents = ({ onClose }: { onClose?: () => void }) => {
           key={info.label}
           aria-labelledby={info.label}
           kind="secondary"
-          onClick={() => onCloseNavigate(info.url)}
+          onClick={() => onCloseNavigate(info.page)}
         >
           {info.label}
         </Button>

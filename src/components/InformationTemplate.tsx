@@ -7,16 +7,26 @@ import {
 import { Heading } from "./styles/text/heading";
 import Section from "./styles/text/section";
 import SubHeading from "./styles/text/subheading";
+import { useMemo } from 'react';
 
-const InformationTemplate = (deps: {
-  date?: string[];
-  descriptions: string[];
+export type InformationTemplateConfig = {
   heading: string;
-  image: string;
-  index: number;
+  descriptions: string[];
   roles: string[];
-}) => {
-  const renderedDescriptionItems = (
+  image: string;
+  date?: string[];
+};
+
+const InformationTemplate = (deps: InformationTemplateConfig & { index: number }) => {
+  const renderedRoles = useMemo(() => (
+    deps.roles.map((roleName, index) => (
+      <Section key={roleName}>
+        <div>{roleName}</div>
+        <SubHeading>{deps.date ? deps.date[index] : ""}</SubHeading>
+      </Section>
+    ))
+  ), [deps.roles, deps.date]);
+  const renderedDescriptionItems = useMemo(() => (
     <InformationDescriptionList>
       {deps.descriptions.map((description) => {
         return (
@@ -26,7 +36,7 @@ const InformationTemplate = (deps: {
         );
       })}
     </InformationDescriptionList>
-  );
+  ), [deps.descriptions]);
 
   return (
     <InformationTemplateStyle
@@ -35,16 +45,11 @@ const InformationTemplate = (deps: {
       tabIndex={1}
     >
       <InformationImage src={deps.image} />
-      <div>
+      <section>
         <Heading>{deps.heading}</Heading>
-        {deps.roles.map((roleName, index) => (
-          <Section key={roleName}>
-            <div>{roleName}</div>
-            <SubHeading>{deps.date ? deps.date[index] : ""}</SubHeading>
-          </Section>
-        ))}
+        {renderedRoles}
         <Section>{renderedDescriptionItems}</Section>
-      </div>
+      </section>
     </InformationTemplateStyle>
   );
 };
